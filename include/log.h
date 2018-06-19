@@ -82,6 +82,20 @@ struct connman_debug_desc {
 					__FILE__, __FUNCTION__ , ## arg); \
 } while (0)
 
+
+struct connman_info_desc {
+	const char *file;
+} __attribute__((aligned(8)));
+
+#define DBG_INFO(fmt, arg...) do { \
+	static struct connman_info_desc __connman_info_desc \
+	__attribute__((used, section("__info"), aligned(8))) = { \
+		.file = __FILE__ \
+	}; \
+	connman_info("%s:%s() " fmt, __FILE__, __FUNCTION__ , ## arg); \
+} while (0)
+
+
 #ifdef __cplusplus
 }
 #endif

@@ -42,7 +42,7 @@ static DBusMessage *get_properties(DBusConnection *conn,
 	dbus_bool_t offlinemode;
 	const char *str;
 
-	DBG("conn %p", conn);
+	DBG_INFO("conn %p", conn);
 
 	reply = dbus_message_new_method_return(msg);
 	if (!reply)
@@ -76,7 +76,7 @@ static DBusMessage *set_property(DBusConnection *conn,
 	const char *name;
 	int type;
 
-	DBG("conn %p", conn);
+	DBG_INFO("conn %p", conn);
 
 	if (!dbus_message_iter_init(msg, &iter))
 		return __connman_error_invalid_arguments(msg);
@@ -126,7 +126,7 @@ static DBusMessage *get_technologies(DBusConnection *conn,
 {
 	DBusMessage *reply;
 
-	DBG("");
+	DBG_INFO("");
 
 	reply = dbus_message_new_method_return(msg);
 	if (!reply)
@@ -144,7 +144,7 @@ static DBusMessage *remove_provider(DBusConnection *conn,
 	const char *path;
 	int err;
 
-	DBG("conn %p", conn);
+	DBG_INFO("conn %p", conn);
 
 	dbus_message_get_args(msg, NULL, DBUS_TYPE_OBJECT_PATH, &path,
 							DBUS_TYPE_INVALID);
@@ -161,7 +161,7 @@ static DBusConnection *connection = NULL;
 static void idle_state(bool idle)
 {
 
-	DBG("idle %d", idle);
+	DBG_INFO("idle %d", idle);
 
 	connman_state_idle = idle;
 
@@ -219,7 +219,7 @@ static DBusMessage *connect_provider(DBusConnection *conn,
 {
 	int err;
 
-	DBG("conn %p", conn);
+	DBG_INFO("conn %p", conn);
 
 	err = __connman_provider_create_and_connect(msg);
 	if (err < 0)
@@ -234,7 +234,7 @@ static DBusMessage *register_agent(DBusConnection *conn,
 	const char *sender, *path;
 	int err;
 
-	DBG("conn %p", conn);
+	DBG_INFO("conn %p", conn);
 
 	sender = dbus_message_get_sender(msg);
 
@@ -254,7 +254,7 @@ static DBusMessage *unregister_agent(DBusConnection *conn,
 	const char *sender, *path;
 	int err;
 
-	DBG("conn %p", conn);
+	DBG_INFO("conn %p", conn);
 
 	sender = dbus_message_get_sender(msg);
 
@@ -275,7 +275,7 @@ static DBusMessage *register_counter(DBusConnection *conn,
 	unsigned int accuracy, period;
 	int err;
 
-	DBG("conn %p", conn);
+	DBG_INFO("conn %p", conn);
 
 	sender = dbus_message_get_sender(msg);
 
@@ -299,7 +299,7 @@ static DBusMessage *unregister_counter(DBusConnection *conn,
 	const char *sender, *path;
 	int err;
 
-	DBG("conn %p", conn);
+	DBG_INFO("conn %p", conn);
 
 	sender = dbus_message_get_sender(msg);
 
@@ -318,7 +318,7 @@ static DBusMessage *create_session(DBusConnection *conn,
 {
 	int err;
 
-	DBG("conn %p", conn);
+	DBG_INFO("conn %p", conn);
 
 	err = __connman_session_create(msg);
 	if (err < 0) {
@@ -336,7 +336,7 @@ static DBusMessage *destroy_session(DBusConnection *conn,
 {
 	int err;
 
-	DBG("conn %p", conn);
+	DBG_INFO("conn %p", conn);
 
 	err = __connman_session_destroy(msg);
 	if (err < 0)
@@ -351,7 +351,7 @@ static DBusMessage *request_private_network(DBusConnection *conn,
 	const char *sender;
 	int  err;
 
-	DBG("conn %p", conn);
+	DBG_INFO("conn %p", conn);
 
 	sender = dbus_message_get_sender(msg);
 
@@ -368,7 +368,7 @@ static DBusMessage *release_private_network(DBusConnection *conn,
 	const char *path;
 	int err;
 
-	DBG("conn %p", conn);
+	DBG_INFO("conn %p", conn);
 
 	dbus_message_get_args(msg, NULL, DBUS_TYPE_OBJECT_PATH, &path,
 							DBUS_TYPE_INVALID);
@@ -444,7 +444,7 @@ static DBusMessage *register_peer_service(DBusConnection *conn,
 	int version;
 	int ret;
 
-	DBG("");
+	DBG_INFO("");
 
 	owner = dbus_message_get_sender(msg);
 
@@ -479,7 +479,7 @@ static DBusMessage *unregister_peer_service(DBusConnection *conn,
 	int version;
 	int ret;
 
-	DBG("");
+	DBG_INFO("");
 
 	owner = dbus_message_get_sender(msg);
 
@@ -581,7 +581,7 @@ static const GDBusSignalTable manager_signals[] = {
 
 int __connman_manager_init(void)
 {
-	DBG("");
+	DBG_INFO("");
 
 	connection = connman_dbus_get_connection();
 	if (!connection)
@@ -602,7 +602,7 @@ int __connman_manager_init(void)
 
 void __connman_manager_cleanup(void)
 {
-	DBG("");
+	DBG_INFO("");
 
 	if (!connection)
 		return;
