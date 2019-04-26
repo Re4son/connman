@@ -2,7 +2,13 @@ connman (1.36+gemian) buster; urgency=medium
 
   * Branched for gemian
 
- -- Adam Boardman <adamboardman@gmail.com>  Wed, 17 Jun 2018 15:56:03 +0100
+ -- Adam Boardman <adamboardman@gmail.com>  Fri, 26 Apr 2019 16:06:00 +0100
+
+connman (1.36-2) unstable; urgency=medium
+
+  * Ported back upstream commit for iwd device state (Closes: #913632)
+
+ -- Alf Gaida <agaida@siduction.org>  Sat, 29 Dec 2018 14:00:23 +0100
 
 connman (1.36-1) unstable; urgency=medium
 
