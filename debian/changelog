@@ -1,3 +1,9 @@
+connman (1.36+kali2) kali-rolling; urgency=medium
+
+  * Updated for kali-gemini
+
+ -- Re4son <re4son@kali.org>  Sun, 26 Jan 2020 07:41:50 +0000
+
 connman (1.36+gemian) buster; urgency=medium
 
   * Branched for gemian
